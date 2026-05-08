@@ -57,7 +57,7 @@ def Convolution(Image,kernel):
 
 def ConvoLayer(Input,Kernels,Biases):
     H, W, _ = Input.shape
-    num_filters,kH, kW, _ = Kernels.shape
+    num_filters,kH, kW, c_out = Kernels.shape
 
     out_H = H - kH + 1
     out_W = W - kW + 1
@@ -70,7 +70,8 @@ def ConvoLayer(Input,Kernels,Biases):
         kernel = Kernels[i]
         bias = Biases[i]
 
-        Z= Convolution(Input, kernel) + bias
+        Z = Convolution(Input, kernel)
+        Z = Z + bias  # scalar per filter
 
         A = ReLU(Z) 
 
