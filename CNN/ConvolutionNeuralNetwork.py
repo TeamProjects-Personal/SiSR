@@ -12,10 +12,9 @@ class ConvolutionNeuralNetwork:
         self.learning_rate = learning_rate
 
         # Bias vectors
-        self.biases = [
-            np.zeros((num_filter, 1))
-        ]
+        self.biases = np.zeros(num_filter)
 
+        
         num_filters = 10
         kernel_size = 3
         in_channels = 3
@@ -107,7 +106,6 @@ class ConvolutionNeuralNetwork:
 
 
                 activations, zs = SRCNN.ConvoLayer(x, self.kernels, self.biases)
-
 
                 loss = np.mean((activations - y) ** 2)
                 total_loss += loss
