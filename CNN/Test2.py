@@ -27,9 +27,26 @@ for hr_file, lr_file in zip(hr_files, lr_files):
 HR = np.array(HR, dtype=object)
 LR = np.array(LR, dtype=object)
 
+
+
 net = NN.ConvolutionNeuralNetwork(16,learning_rate=0.1)
-net.train(LR,HR,10)
 
 
+
+
+LR_up = []
+
+for lr, hr in zip(LR, HR):
+
+    h, w = hr.shape[:2]
+
+    lr_up = cv.resize(lr, (w, h), interpolation=cv.INTER_CUBIC)
+
+    LR_up.append(lr_up)
+
+LR_up = np.array(LR_up, dtype=object)
+
+
+net.train(LR_up,HR,10)
 
 
