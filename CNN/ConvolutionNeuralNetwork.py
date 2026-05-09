@@ -134,3 +134,10 @@ class ConvolutionNeuralNetwork:
 
         self.biases = list(data["biases"])
 
+def pad_image(img, pad_h, pad_w):
+    return np.pad(
+        img,
+        ((pad_h, pad_h), (pad_w, pad_w), (0, 0)),
+        mode='constant',
+        constant_values=0
+    )
